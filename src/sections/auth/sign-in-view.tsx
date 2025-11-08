@@ -1,4 +1,6 @@
-import { useState, useCallback } from 'react';
+
+
+import { useState, useCallback, useEffect } from 'react';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -11,18 +13,38 @@ import InputAdornment from '@mui/material/InputAdornment';
 
 import { useRouter } from 'src/routes/hooks';
 
+import authApi from 'src/api/auth-api';
+
 import { Iconify } from 'src/components/iconify';
 
 // ----------------------------------------------------------------------
 
 export function SignInView() {
   const router = useRouter();
-
+  const [email, setEmail] = useState<string>('');
+  const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
-  const handleSignIn = useCallback(() => {
-    router.push('/');
-  }, [router]);
+  const handleSignIn = () => {
+    console.log(email, password);
+    if(email && password) {
+      authApi.login({ email, password }).then((response) => {
+        console.log(response);
+        setIsLoggedIn(true);
+      }).catch((error) => {
+        console.log(error);
+      });
+    }
+  }
+
+  // useEffect(() => {
+  //   authApi.profile().then((response) => {
+  //     console.log("profile", response);
+  //   }).catch((error) => {
+  //     console.log(error);
+  //   });
+  // }, [isLoggedIn]);
 
   const renderForm = (
     <Box
@@ -36,10 +58,14 @@ export function SignInView() {
         fullWidth
         name="email"
         label="Email address"
-        defaultValue="hello@gmail.com"
         sx={{ mb: 3 }}
+        placeholder="Enter your email"
         slotProps={{
           inputLabel: { shrink: true },
+        }}
+        value={email}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setEmail(event.target.value);
         }}
       />
 
@@ -51,8 +77,12 @@ export function SignInView() {
         fullWidth
         name="password"
         label="Password"
-        defaultValue="@demo1234"
+        placeholder="Enter your password"
         type={showPassword ? 'text' : 'password'}
+        value={password}
+        onChange={(event: React.ChangeEvent<HTMLInputElement>) => {
+          setPassword(event.target.value);
+        }}
         slotProps={{
           inputLabel: { shrink: true },
           input: {

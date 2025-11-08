@@ -5,6 +5,7 @@ import { SignInView } from 'src/sections/auth';
 // ----------------------------------------------------------------------
 
 export default function Page() {
+  console.log('SignInPage');
   return (
     <>
       <title>{`Sign in - ${CONFIG.appName}`}</title>

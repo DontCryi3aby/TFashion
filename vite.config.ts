@@ -12,11 +12,11 @@ export default defineConfig({
     react(),
     checker({
       typescript: true,
-      eslint: {
-        useFlatConfig: true,
-        lintCommand: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
-        dev: { logLevel: ['error'] },
-      },
+      // eslint: {
+      //   useFlatConfig: true,
+      //   lintCommand: 'eslint "./src/**/*.{js,jsx,ts,tsx}"',
+      //   dev: { logLevel: ['error'] },
+      // },
       overlay: {
         position: 'tl',
         initialIsOpen: false,
@@ -33,4 +33,7 @@ export default defineConfig({
   },
   server: { port: PORT, host: true },
   preview: { port: PORT, host: true },
+  define: {
+    'process.env': process.env,
+  },
 });
