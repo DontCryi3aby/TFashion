@@ -12,12 +12,12 @@ import { DashboardLayout } from 'src/layouts/dashboard';
 
 // ----------------------------------------------------------------------
 
-export const DashboardPage = lazy(() => import('src/pages/admin/dashboard'));
-export const BlogPage = lazy(() => import('src/pages/admin/blog'));
-export const UserPage = lazy(() => import('src/pages/admin/user'));
-export const SignInPage = lazy(() => import('src/pages/admin/sign-in'));
-export const ProductsPage = lazy(() => import('src/pages/admin/products'));
-export const Page404 = lazy(() => import('src/pages/page-not-found'));
+export const DashboardPage = lazy(() => import('src/features/admin/pages/dashboard'));
+export const BlogPage = lazy(() => import('src/features/admin/pages/blog'));
+export const UserPage = lazy(() => import('src/features/admin/pages/user'));
+export const SignInPage = lazy(() => import('src/features/admin/pages/sign-in'));
+export const ProductsPage = lazy(() => import('src/features/admin/pages/products'));
+export const Page404 = lazy(() => import('src/components/page-not-found'));
 
 const renderFallback = () => (
   <Box

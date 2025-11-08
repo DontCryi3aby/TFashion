@@ -15,6 +15,8 @@ import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
 import { useRouter, usePathname } from 'src/routes/hooks';
 
 import { _myAccount } from 'src/_mock';
+import { useAppDispatch } from 'src/app/hooks';
+import { authActions } from 'src/features/auth/authSlice';
 
 // ----------------------------------------------------------------------
 
@@ -29,7 +31,7 @@ export type AccountPopoverProps = IconButtonProps & {
 
 export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps) {
   const router = useRouter();
-
+  const dispatch = useAppDispatch();
   const pathname = usePathname();
 
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(null);
@@ -129,7 +131,9 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
         <Divider sx={{ borderStyle: 'dashed' }} />
 
         <Box sx={{ p: 1 }}>
-          <Button fullWidth color="error" size="medium" variant="text">
+          <Button fullWidth color="error" size="medium" variant="text"
+            onClick={() => dispatch(authActions.logout())}
+          >
             Logout
           </Button>
         </Box>

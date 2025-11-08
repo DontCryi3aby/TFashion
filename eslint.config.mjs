@@ -173,6 +173,10 @@ export const customConfig = {
     ...importRules(),
     ...unusedImportsRules(),
     ...sortImportsRules(),
+    "import/order": "off",
+    "simple-import-sort/imports": "off",
+    "simple-import-sort/exports": "off",
+    "@typescript-eslint/consistent-type-imports": "off"
   },
 };
 

@@ -1,6 +1,6 @@
 
 
-import { useState, useCallback, useEffect } from 'react';
+import { useState } from 'react';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
@@ -11,40 +11,26 @@ import IconButton from '@mui/material/IconButton';
 import Typography from '@mui/material/Typography';
 import InputAdornment from '@mui/material/InputAdornment';
 
-import { useRouter } from 'src/routes/hooks';
-
-import authApi from 'src/api/auth-api';
+import { useAppDispatch } from 'src/app/hooks';
+import { authActions } from 'src/features/auth/authSlice';
 
 import { Iconify } from 'src/components/iconify';
+
 
 // ----------------------------------------------------------------------
 
 export function SignInView() {
-  const router = useRouter();
   const [email, setEmail] = useState<string>('');
   const [password, setPassword] = useState<string>('');
   const [showPassword, setShowPassword] = useState(false);
-  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  const dispatch = useAppDispatch();
 
   const handleSignIn = () => {
     console.log(email, password);
     if(email && password) {
-      authApi.login({ email, password }).then((response) => {
-        console.log(response);
-        setIsLoggedIn(true);
-      }).catch((error) => {
-        console.log(error);
-      });
+      dispatch(authActions.login({ email, password }));
     }
   }
-
-  // useEffect(() => {
-  //   authApi.profile().then((response) => {
-  //     console.log("profile", response);
-  //   }).catch((error) => {
-  //     console.log(error);
-  //   });
-  // }, [isLoggedIn]);
 
   const renderForm = (
     <Box

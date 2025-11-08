@@ -1,6 +1,7 @@
 import 'src/global.css';
 
 import { useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 import Fab from '@mui/material/Fab';
 
@@ -9,6 +10,8 @@ import { usePathname } from 'src/routes/hooks';
 import { ThemeProvider } from 'src/theme/theme-provider';
 
 import { Iconify } from 'src/components/iconify';
+
+import { setNavigate } from './utils/navigate';
 
 // ----------------------------------------------------------------------
 
@@ -37,6 +40,12 @@ export default function App({ children }: AppProps) {
       <Iconify width={24} icon="socials:github" sx={{ '--color': 'white' }} />
     </Fab>
   );
+
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setNavigate(navigate);
+  }, [navigate]);
 
   return (
     <ThemeProvider>

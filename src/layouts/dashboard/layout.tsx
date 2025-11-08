@@ -1,13 +1,16 @@
 import type { Breakpoint } from '@mui/material/styles';
 
 import { merge } from 'es-toolkit';
+import { Navigate } from 'react-router-dom';
 import { useBoolean } from 'minimal-shared/hooks';
 
 import Box from '@mui/material/Box';
 import Alert from '@mui/material/Alert';
 import { useTheme } from '@mui/material/styles';
 
+import { useAppSelector } from 'src/app/hooks';
 import { _langs, _notifications } from 'src/_mock';
+import { selectIsLoggedIn } from 'src/features/auth/authSlice';
 
 import { NavMobile, NavDesktop } from './nav';
 import { layoutClasses } from '../core/classes';
@@ -48,7 +51,8 @@ export function DashboardLayout({
   layoutQuery = 'lg',
 }: DashboardLayoutProps) {
   const theme = useTheme();
-
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
+  
   const { value: open, onFalse: onClose, onTrue: onOpen } = useBoolean();
 
   const renderHeader = () => {
@@ -106,6 +110,8 @@ export function DashboardLayout({
   const renderFooter = () => null;
 
   const renderMain = () => <MainSection {...slotProps?.main}>{children}</MainSection>;
+
+  if (!isLoggedIn) return <Navigate to="/admin/sign-in" />;
 
   return (
     <LayoutSection

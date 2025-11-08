@@ -1,12 +1,16 @@
 import type { CSSObject, Breakpoint } from '@mui/material/styles';
 
 import { merge } from 'es-toolkit';
+import { Navigate } from 'react-router-dom';
 
 import Box from '@mui/material/Box';
 import Link from '@mui/material/Link';
 import Alert from '@mui/material/Alert';
 
 import { RouterLink } from 'src/routes/components';
+
+import { useAppSelector } from 'src/app/hooks';
+import { selectIsLoggedIn } from 'src/features/auth/authSlice';
 
 import { Logo } from 'src/components/logo';
 
@@ -40,6 +44,7 @@ export function AuthLayout({
   slotProps,
   layoutQuery = 'md',
 }: AuthLayoutProps) {
+  const isLoggedIn = useAppSelector(selectIsLoggedIn);
   const renderHeader = () => {
     const headerSlotProps: HeaderSectionProps['slotProps'] = { container: { maxWidth: false } };
 
@@ -104,6 +109,7 @@ export function AuthLayout({
       <AuthContent {...slotProps?.content}>{children}</AuthContent>
     </MainSection>
   );
+  if (isLoggedIn) return <Navigate to="/admin" />;
 
   return (
     <LayoutSection
