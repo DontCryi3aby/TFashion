@@ -31,8 +31,8 @@ export default defineConfig({
       },
     ],
   },
-  server: { port: PORT, host: true },
-  preview: { port: PORT, host: true },
+  server: { port: PORT, host: true, allowedHosts: ['thachdz.dev'] },
+  preview: { port: PORT, host: true, allowedHosts: ['thachdz.dev'] },
   define: {
     'process.env': process.env,
   },
