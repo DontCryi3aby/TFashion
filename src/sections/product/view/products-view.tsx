@@ -2,11 +2,14 @@ import { useState, useCallback } from 'react';
 
 import Box from '@mui/material/Box';
 import Grid from '@mui/material/Grid';
+import Button from '@mui/material/Button';
 import Pagination from '@mui/material/Pagination';
 import Typography from '@mui/material/Typography';
 
 import { _products } from 'src/_mock';
 import { DashboardContent } from 'src/layouts/dashboard';
+
+import { Iconify } from 'src/components/iconify';
 
 import { ProductItem } from '../product-item';
 import { ProductSort } from '../product-sort';
@@ -14,6 +17,7 @@ import { CartIcon } from '../product-cart-widget';
 import { ProductFilters } from '../product-filters';
 
 import type { FiltersProps } from '../product-filters';
+import { useNavigate } from 'react-router-dom';
 
 // ----------------------------------------------------------------------
 
@@ -64,6 +68,8 @@ export function ProductsView() {
 
   const [filters, setFilters] = useState<FiltersProps>(defaultFilters);
 
+  const navigate = useNavigate();
+
   const handleOpenFilter = useCallback(() => {
     setOpenFilter(true);
   }, []);
@@ -88,9 +94,26 @@ export function ProductsView() {
     <DashboardContent>
       <CartIcon totalItems={8} />
 
-      <Typography variant="h4" sx={{ mb: 5 }}>
-        Products
-      </Typography>
+      <Box
+        sx={{
+          mb: 5,
+          display: 'flex',
+          alignItems: 'center',
+        }}
+      >
+        <Typography variant="h4" sx={{ flexGrow: 1 }}>
+          Products
+        </Typography>
+        <Button
+          variant="contained"
+          color="inherit"
+          startIcon={<Iconify icon="mingcute:add-line" />}
+          onClick={() => navigate('/admin/products/new')}
+        >
+          New product
+        </Button>
+      </Box>
+
       <Box
         sx={{
           mb: 5,
