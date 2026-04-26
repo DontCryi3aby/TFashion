@@ -18,6 +18,7 @@ import { ProductFilters } from '../product-filters';
 
 import type { FiltersProps } from '../product-filters';
 import { useNavigate } from 'react-router-dom';
+import { useTranslation } from 'react-i18next';
 
 // ----------------------------------------------------------------------
 
@@ -69,6 +70,7 @@ export function ProductsView() {
   const [filters, setFilters] = useState<FiltersProps>(defaultFilters);
 
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleOpenFilter = useCallback(() => {
     setOpenFilter(true);
@@ -110,7 +112,7 @@ export function ProductsView() {
           startIcon={<Iconify icon="mingcute:add-line" />}
           onClick={() => navigate('/admin/products/new')}
         >
-          New product
+          {t('Product.Create product')}
         </Button>
       </Box>
 

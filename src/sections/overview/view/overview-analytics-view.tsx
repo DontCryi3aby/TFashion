@@ -13,14 +13,16 @@ import { AnalyticsWidgetSummary } from '../analytics-widget-summary';
 import { AnalyticsTrafficBySite } from '../analytics-traffic-by-site';
 import { AnalyticsCurrentSubject } from '../analytics-current-subject';
 import { AnalyticsConversionRates } from '../analytics-conversion-rates';
+import { useTranslation } from 'react-i18next';
 
 // ----------------------------------------------------------------------
 
 export function OverviewAnalyticsView() {
+  const { t } = useTranslation();
   return (
     <DashboardContent maxWidth="xl">
       <Typography variant="h4" sx={{ mb: { xs: 3, md: 5 } }}>
-        Hi, Welcome back 👋
+        {t('Dashboard.Hi, Welcome back')}
       </Typography>
 
       <Grid container spacing={3}>
