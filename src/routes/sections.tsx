@@ -9,6 +9,7 @@ import LinearProgress, { linearProgressClasses } from '@mui/material/LinearProgr
 
 import { AuthLayout } from 'src/layouts/auth';
 import { DashboardLayout } from 'src/layouts/dashboard';
+import { ProductsCreateView } from 'src/sections/product/view';
 
 // ----------------------------------------------------------------------
 
@@ -16,6 +17,7 @@ export const DashboardPage = lazy(() => import('src/features/admin/pages/dashboa
 export const BlogPage = lazy(() => import('src/features/admin/pages/blog'));
 export const UserPage = lazy(() => import('src/features/admin/pages/user'));
 export const SignInPage = lazy(() => import('src/features/admin/pages/sign-in'));
+export const SignUpPage = lazy(() => import('src/features/admin/pages/sign-up'));
 export const ProductsPage = lazy(() => import('src/features/admin/pages/products'));
 export const Page404 = lazy(() => import('src/components/page-not-found'));
 
@@ -66,6 +68,7 @@ export const routesSection: RouteObject[] = [
       { path: 'dashboard', element: <DashboardPage /> },
       { path: 'user', element: <UserPage /> },
       { path: 'products', element: <ProductsPage /> },
+      { path: 'products/new', element: <ProductsCreateView /> },
       { path: 'blog', element: <BlogPage /> },
     ],
   },
@@ -73,11 +76,12 @@ export const routesSection: RouteObject[] = [
     path: 'admin',
     element: (
       <AuthLayout>
-        <SignInPage />
+        <Outlet />
       </AuthLayout>
     ),
     children: [
       { path: 'sign-in', element: <SignInPage /> },
+      { path: 'sign-up', element: <SignUpPage /> },
     ],
   },
   {

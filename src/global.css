@@ -18,6 +18,8 @@
 /* chart */
 @import './components/chart/styles.css';
 
+@import './styles.css';
+
 /** **************************************
 * Baseline
 *************************************** */

@@ -10,8 +10,8 @@ export interface RegisterPayload {
     fullname: string;
     phone_number: string;
     password: string;
-    repeat_password: string;
-    address: string;
+    // repeat_password: string;
+    address?: string;
     avatar?: UserAvatar;
 }
 
