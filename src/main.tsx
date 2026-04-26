@@ -8,6 +8,7 @@ import App from './app';
 import { store,persistor } from './app/store';
 import { routesSection } from './routes/sections';
 import { ErrorBoundary } from './routes/components';
+import './i18n';
 
 
 // ----------------------------------------------------------------------

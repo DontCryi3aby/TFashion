@@ -14,6 +14,7 @@ import { useAppDispatch } from 'src/app/hooks';
 import { authActions } from 'src/features/auth/authSlice';
 
 import { Iconify } from 'src/components/iconify';
+import { useTranslation } from 'react-i18next';
 
 
 // ----------------------------------------------------------------------
@@ -25,6 +26,7 @@ export function SignInView() {
   const [showPassword, setShowPassword] = useState(false);
   const dispatch = useAppDispatch();
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSignIn = () => {
     console.log(email, password);
@@ -93,7 +95,7 @@ export function SignInView() {
         variant="contained"
         onClick={handleSignIn}
       >
-        Sign in
+        {t('Account.Login')}
       </Button>
     </Box>
   );
@@ -109,7 +111,7 @@ export function SignInView() {
           mb: 5,
         }}
       >
-        <Typography variant="h5">Sign in</Typography>
+        <Typography variant="h5">{t('Account.Login')}</Typography>
         <Typography
           variant="body2"
           sx={{

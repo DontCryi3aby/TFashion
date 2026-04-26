@@ -17,6 +17,7 @@ import { useRouter, usePathname } from 'src/routes/hooks';
 import { _myAccount } from 'src/_mock';
 import { useAppDispatch } from 'src/app/hooks';
 import { authActions } from 'src/features/auth/authSlice';
+import { useTranslation } from 'react-i18next';
 
 // ----------------------------------------------------------------------
 
@@ -33,6 +34,7 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
   const router = useRouter();
   const dispatch = useAppDispatch();
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   const [openPopover, setOpenPopover] = useState<HTMLButtonElement | null>(null);
 
@@ -123,7 +125,7 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
               onClick={() => handleClickItem(option.href)}
             >
               {option.icon}
-              {option.label}
+              {t(option.label)}
             </MenuItem>
           ))}
         </MenuList>
@@ -134,7 +136,7 @@ export function AccountPopover({ data = [], sx, ...other }: AccountPopoverProps)
           <Button fullWidth color="error" size="medium" variant="text"
             onClick={() => dispatch(authActions.logout())}
           >
-            Logout
+            {t('Account.Logout')}
           </Button>
         </Box>
       </Popover>

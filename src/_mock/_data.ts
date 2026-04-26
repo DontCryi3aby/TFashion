@@ -106,13 +106,23 @@ export const _langs = [
   },
   {
     value: 'de',
-    label: 'German',
+    label: 'Deutsch',
     icon: '/assets/icons/flags/ic-flag-de.svg',
   },
   {
     value: 'fr',
-    label: 'French',
+    label: 'Français',
     icon: '/assets/icons/flags/ic-flag-fr.svg',
+  },
+  {
+    value: 'vi',
+    label: 'Việt Nam',
+    icon: '/assets/icons/flags/ic-flag-vi.svg',
+  },
+  {
+    value: 'zh',
+    label: '中文',
+    icon: '/assets/icons/flags/ic-flag-zh.svg',
   },
 ];
 

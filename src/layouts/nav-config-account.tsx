@@ -4,19 +4,20 @@ import type { AccountPopoverProps } from './components/account-popover';
 
 // ----------------------------------------------------------------------
 
+/** `label` values are i18n keys; translated in AccountPopover after async bundles load. */
 export const _account: AccountPopoverProps['data'] = [
   {
-    label: 'Home',
+    label: 'Account.Home',
     href: '/',
     icon: <Iconify width={22} icon="solar:home-angle-bold-duotone" />,
   },
   {
-    label: 'Profile',
+    label: 'Account.Profile',
     href: '#',
     icon: <Iconify width={22} icon="solar:shield-keyhole-bold-duotone" />,
   },
   {
-    label: 'Settings',
+    label: 'Account.Settings',
     href: '#',
     icon: <Iconify width={22} icon="solar:settings-bold-duotone" />,
   },

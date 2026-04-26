@@ -15,11 +15,11 @@ import { RouterLink } from 'src/routes/components';
 import { Logo } from 'src/components/logo';
 import { Scrollbar } from 'src/components/scrollbar';
 
-import { NavUpgrade } from '../components/nav-upgrade';
 import { WorkspacesPopover } from '../components/workspaces-popover';
 
 import type { NavItem } from '../nav-config-dashboard';
 import type { WorkspacesPopoverProps } from '../components/workspaces-popover';
+import { useTranslation } from 'react-i18next';
 
 // ----------------------------------------------------------------------
 
@@ -109,6 +109,7 @@ export function NavMobile({
 
 export function NavContent({ data, slots, workspaces, sx }: NavContentProps) {
   const pathname = usePathname();
+  const { t } = useTranslation();
 
   return (
     <>
@@ -174,7 +175,7 @@ export function NavContent({ data, slots, workspaces, sx }: NavContentProps) {
                     </Box>
 
                     <Box component="span" sx={{ flexGrow: 1 }}>
-                      {item.title}
+                      {t(item.title)}
                     </Box>
 
                     {item.info && item.info}
@@ -187,8 +188,6 @@ export function NavContent({ data, slots, workspaces, sx }: NavContentProps) {
       </Scrollbar>
 
       {slots?.bottomArea}
-
-      <NavUpgrade />
     </>
   );
 }

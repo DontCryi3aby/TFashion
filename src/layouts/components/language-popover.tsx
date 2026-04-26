@@ -8,6 +8,7 @@ import Popover from '@mui/material/Popover';
 import MenuList from '@mui/material/MenuList';
 import IconButton from '@mui/material/IconButton';
 import MenuItem, { menuItemClasses } from '@mui/material/MenuItem';
+import i18n from 'src/i18n';
 
 // ----------------------------------------------------------------------
 
@@ -22,11 +23,13 @@ export type LanguagePopoverProps = IconButtonProps & {
 export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProps) {
   const { open, anchorEl, onClose, onOpen } = usePopover();
 
-  const [locale, setLocale] = useState(data[0].value);
+  const [locale, setLocale] = useState(i18n.language);
 
   const handleChangeLang = useCallback(
     (newLang: string) => {
+      i18n.changeLanguage(newLang);
       setLocale(newLang);
+      localStorage.setItem("TFashion_lang", newLang);
       onClose();
     },
     [onClose]
@@ -74,7 +77,7 @@ export function LanguagePopover({ data = [], sx, ...other }: LanguagePopoverProp
           <MenuItem
             key={option.value}
             selected={option.value === currentLang?.value}
-            onClick={() => handleChangeLang(option.value)}
+            onClick={() => {handleChangeLang(option.value)}}
           >
             {renderFlag(option.label, option.icon)}
             {option.label}

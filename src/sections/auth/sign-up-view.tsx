@@ -11,6 +11,7 @@ import Typography from '@mui/material/Typography';
 import { useNavigate } from 'react-router-dom';
 import authApi from 'src/api/auth-api';
 import { Iconify } from 'src/components/iconify';
+import { useTranslation } from 'react-i18next';
 
 // ----------------------------------------------------------------------
 
@@ -21,6 +22,7 @@ export function SignUpView() {
   const [phone, setPhone] = useState<string>('');
   const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
+  const { t } = useTranslation();
 
   const handleSignOut = async () => {
     console.log(email, password, name, phone);
@@ -148,9 +150,9 @@ export function SignUpView() {
             color: 'text.secondary',
           }}
         >
-          Already have an account?
+          {t('Account.Already have an account?')}
           <Typography component="span" variant="subtitle2" sx={{ ml: 0.5, cursor: 'pointer', color: 'primary.main' }} onClick={() => navigate('/admin/sign-in')}>
-            Sign in
+            {t('Account.Login')}
           </Typography>
         </Typography>
       </Box>
